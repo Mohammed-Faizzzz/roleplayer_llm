@@ -1,6 +1,6 @@
 import random
 from camel.tasks import Task
-from persona_handler import persona_queue, find_closest_persona, generate_persona_description
+from persona_manager import available_personas, persona_queue, find_closest_persona, generate_persona_description
 
 def generate_task(batch, batch_size):
     global persona_queue
