@@ -45,3 +45,5 @@ def generate_persona_description(persona_name):
     ).result
 
     return new_description.strip()
+
+    __all__ = ["available_personas", "persona_queue", "find_closest_persona", "generate_persona_description"]
