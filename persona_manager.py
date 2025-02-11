@@ -85,10 +85,12 @@ available_personas = [
     {"name": "Archmage Zephyrus", "description": "Elemental mage, old but powerful, wise."},
     {"name": "Quantum Jack", "description": "Time traveler, always one step ahead, paradoxical."}
 ]
-persona_queue = available_personas.copy()
+# persona_queue = available_personas.copy()
 
+# Methods to aid inference
 def find_closest_persona(persona_name):
-    """Finds the closest matching persona based on the given persona name."""
+    """Finds the closest matching persona based on the given persona name. Not required for data synthesis,
+    more for inference"""
     persona_names = [p["name"] for p in available_personas]
     closest_match = difflib.get_close_matches(persona_name, persona_names, n=1, cutoff=0.6)
     if closest_match:
@@ -98,7 +100,8 @@ def find_closest_persona(persona_name):
 def generate_persona_description(persona_name):
     """If a persona is not found, it queries the Large LLM to generate a description for it to roleplay.
     Ideally, this should not be required during inference, because we would have a good enough dataset.
-    Alternatively, we should make the LLM to instead query the user for the description"""
+    Alternatively, we should make the LLM to instead query the user for the description. This method is
+    also for inference purposes"""
     print(f"Persona '{persona_name}' not found. Generating description...")
     
     persona_prompt = (
@@ -112,4 +115,4 @@ def generate_persona_description(persona_name):
 
     return new_description.strip()
 
-    __all__ = ["available_personas", "persona_queue", "find_closest_persona", "generate_persona_description"]
+__all__ = ["available_personas", "persona_queue", "find_closest_persona", "generate_persona_description"]

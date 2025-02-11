@@ -20,7 +20,7 @@ nest_asyncio.apply()
 scenario_persona = (
     "You are a professional creative writer specializing in immersive role-play dialogue writing. "
     "Your goal is to generate **long, engaging, multi-turn conversations** between characters, ensuring each dialogue is detailed and immersive.\n\n"
-    "🔹 **Requirements:**\n"
+    "**Requirements:**\n"
     "1. **At least 10-15 exchanges per conversation.**\n"
     "2. **Keep responses in-character**—maintain their speech patterns, personality, and logical reasoning.\n"
     "3. **Build up tension, conflict, or intrigue** (e.g., detective solving a case, villain planning an attack, hero facing a moral dilemma).\n"

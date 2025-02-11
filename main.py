@@ -8,7 +8,7 @@ def generate_data_until_budget_exhausted():
     """Generate data in batches until API credits run out"""
 
     dataset = []
-    batch_size = len(available_personas)  # Number of personas per batch
+    batch_size = 5  # Number of personas per batch
     max_batches = 50  # Target batches (stops when API credits are exhausted)
 
     for batch in range(max_batches):
