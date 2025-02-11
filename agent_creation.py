@@ -18,8 +18,14 @@ nest_asyncio.apply()
 
 # Scenario Generator
 scenario_persona = (
-    "You are a creative writer specializing in generating immersive dialogue-based role-play scenarios. "
-    "Instead of just providing a setting, you will generate a multi-turn conversation where the character responds naturally."
+    "You are a professional creative writer specializing in immersive role-play dialogue writing. "
+    "Your goal is to generate **long, engaging, multi-turn conversations** between characters, ensuring each dialogue is detailed and immersive.\n\n"
+    "🔹 **Requirements:**\n"
+    "1. **At least 10-15 exchanges per conversation.**\n"
+    "2. **Keep responses in-character**—maintain their speech patterns, personality, and logical reasoning.\n"
+    "3. **Build up tension, conflict, or intrigue** (e.g., detective solving a case, villain planning an attack, hero facing a moral dilemma).\n"
+    "4. **Include emotions, reactions, and subtle actions** (e.g., Holmes tapping his chin thoughtfully, Joker laughing maniacally).\n"
+    "5. **Make the dialogue flow naturally**—avoid robotic, repetitive exchanges."
 )
 
 scenario_example_output = (
@@ -27,7 +33,11 @@ scenario_example_output = (
     "Watson: 'Holmes, this murder is unlike any we've seen before. No forced entry, yet the victim was strangled.'\n"
     "Holmes: 'Ah, Watson, observe closely! The dust near the window—disturbed! A classic case of deception!'\n"
     "Watson: 'So you believe the murderer escaped through the window?'\n"
-    "Holmes: 'Precisely. The angle of disturbance suggests an accomplice. But the real question is—why no footprints outside?'"
+    "Holmes: 'Precisely. The angle of disturbance suggests an accomplice. But the real question is—why no footprints outside?'\n"
+    "Watson: 'A clever trick indeed. Perhaps the murderer used a rope to climb down?'\n"
+    "Holmes: (taps chin thoughtfully) 'Possible. But look closer—see the indentation on the carpet?'\n"
+    "Watson: 'Good heavens! Someone had been standing there for a long time!'\n"
+    "Holmes: 'Exactly. The murderer never escaped. He was hiding inside the house all along...'"
 )
 
 scenario_agent = ChatAgent(
@@ -46,9 +56,9 @@ qc_persona = (
     "You are a quality control expert ensuring that role-play dialogues remain in character and feel natural. "
     "Your job is to analyze the entire conversation and ensure it follows the persona’s speech patterns and logical flow."
     "\n\nIf any part of the conversation is off, rewrite it while keeping the dialogue format intact."
-    "\n✅ Ensure the dialogue makes sense in context."
-    "\n✅ Maintain correct speech patterns for each character."
-    "\n✅ Fix any unnatural or out-of-character lines."
+    "\n Ensure the dialogue makes sense in context."
+    "\n Maintain correct speech patterns for each character."
+    "\n Fix any unnatural or out-of-character lines."
 )
 
 qc_example_feedback = (
@@ -72,10 +82,10 @@ qc_agent = ChatAgent(
 formatter_persona = (
     "Your task is to format role-play dialogue data into a structured JSON dataset."
     "\n\n**IMPORTANT RULES:**"
-    "\n✅ **Output must be valid JSON** (No markdown formatting, no explanations, no additional text)."
-    "\n✅ **Each conversation must follow a multi-turn format.**"
-    "\n✅ **Each sample must include a persona description** to ensure generalization."
-    "\n✅ **Strictly adhere to this structure:**"
+    "\n **Output must be valid JSON** (No markdown formatting, no explanations, no additional text)."
+    "\n **Each conversation must follow a multi-turn format.**"
+    "\n **Each sample must include a persona description** to ensure generalization."
+    "\n **Strictly adhere to this structure:**"
     "\n```json"
     "\n["
     "\n  {"

@@ -18,7 +18,7 @@ def clean_json_output(json_text):
         parsed_json = json.loads(json_text)
         return parsed_json
     except json.JSONDecodeError:
-        print("❌ Warning: LLM did not return valid JSON. Skipping this batch.")
+        print("Warning: LLM did not return valid JSON. Skipping this batch.")
         return None
 
 def save_progress(data, filename="roleplay_dataset.json"):
@@ -42,7 +42,7 @@ def save_progress(data, filename="roleplay_dataset.json"):
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(existing_data, f, indent=4)
 
-        print(f"✅ Progress saved! Dataset now contains {len(existing_data)} samples.")
+        print(f"Progress saved! Dataset now contains {len(existing_data)} samples.")
 
     except json.JSONDecodeError as e:
-        print(f"❌ Error: JSON file is still corrupted. Details: {e}")
+        print(f"Error: JSON file is still corrupted. Details: {e}")
