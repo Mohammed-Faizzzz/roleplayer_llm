@@ -85,7 +85,7 @@ available_personas = [
     {"name": "Archmage Zephyrus", "description": "Elemental mage, old but powerful, wise."},
     {"name": "Quantum Jack", "description": "Time traveler, always one step ahead, paradoxical."}
 ]
-# persona_queue = available_personas.copy()
+persona_queue = available_personas.copy()
 
 # Methods to aid inference
 def find_closest_persona(persona_name):

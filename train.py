@@ -8,11 +8,13 @@ os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 
 import torch
 torch.mps.empty_cache()
-device = torch.device("cpu")
+device = torch.device("mps")
 
-# Load Base LLaMA-3-3B Model
+# Load Base Model
 model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
-model = AutoModelForCausalLM.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name,
+    return_dict=True,
+    output_hidden_states=False)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # Apply LoRA --> Suited for our use case
@@ -37,13 +39,19 @@ def format_dialogue(example):
     return {"text": dialogue_text}
 
 def tokenize_function(examples):
-    return tokenizer(
+    tokenized_inputs = tokenizer(
         examples["text"],
-        padding="max_length",   # Ensures all sequences have the same length
-        truncation=True,        # Prevents sequences from being too long
-        max_length=512,         # Set max length (adjust based on model limits)
+        padding="max_length",  
+        truncation=True,       
+        max_length=512,        
         return_tensors="pt"
     )
+    
+    # Labels should be the same as input_ids
+    tokenized_inputs["labels"] = tokenized_inputs["input_ids"].clone()
+    
+    return tokenized_inputs
+
 
 # Load dataset
 dataset = load_dataset("json", data_files="generalised.json")
@@ -63,8 +71,7 @@ training_args = TrainingArguments(
     learning_rate=5e-4,  # Higher LR needed since it's a distilled model
     save_steps=500,  # Save progress frequently
     logging_steps=50,  # Monitor training
-    optim="adamw_torch",  # AdamW works best for Transformers
-    weight_decay=0.0,  # Distilled models don’t need weight decay
+    optim="adamw_torch",
     warmup_steps=500,  # Smooth LR transition
     fp16=True,  # Mixed precision for speed
     bf16=False,

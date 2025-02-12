@@ -2,6 +2,8 @@ import json
 import os
 import re
 
+from sentence_transformers import SentenceTransformer, util
+
 # Code from this file is still buggy, hence requiring manual copy pasting of JSON output to data file
 
 def clean_json_output(json_text):
@@ -46,3 +48,14 @@ def save_progress(data, filename="roleplay_dataset.json"):
 
     except json.JSONDecodeError as e:
         print(f"Error: JSON file is still corrupted. Details: {e}")
+
+model = SentenceTransformer("all-MiniLM-L6-v2")  # Lightweight & fast
+
+def is_duplicate(new_text, dataset_texts, threshold=0.85):
+    new_embedding = model.encode(new_text, convert_to_tensor=True)
+    dataset_embeddings = model.encode(dataset_texts, convert_to_tensor=True)
+    similarity_scores = util.pytorch_cos_sim(new_embedding, dataset_embeddings)
+
+    if max(similarity_scores[0]) > threshold:
+        return True  # Reject: Too similar
+    return False  # Accept: Unique
