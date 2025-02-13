@@ -81,11 +81,13 @@ qc_agent = ChatAgent(
 # Data Formatter
 formatter_persona = (
     "Your task is to format role-play dialogue data into a structured JSON dataset."
-    "\n\n**IMPORTANT RULES:**"
-    "\n **Output must be valid JSON** (No markdown formatting, no explanations, no additional text)."
-    "\n **Each conversation must follow a multi-turn format.**"
-    "\n **Each sample must include a persona description** to ensure generalization."
-    "\n **Strictly adhere to this structure:**"
+    "\n\n⚠️ **CRITICAL RULES - FOLLOW STRICTLY:**"
+    "\n✅ **Output must be PURE JSON** - NO markdown, NO explanations, NO additional text."
+    "\n✅ **Your response MUST begin directly with `[{` and end with `}]`**."
+    "\n✅ **DO NOT include headers, introductions, or comments.**"
+    "\n✅ **Ensure all JSON keys and values are enclosed in double quotes (`\"`), NOT single quotes (`'`).**"
+    "\n✅ **If the output is not valid JSON, retry until it is correctly formatted.**"
+    "\n\n**FORMAT:**"
     "\n```json"
     "\n["
     "\n  {"
@@ -101,8 +103,9 @@ formatter_persona = (
     "\n  }"
     "\n]"
     "\n```"
-    "\n\n**DO NOT ADD ANY INTRODUCTORY TEXT, JUST RETURN JSON.**"
+    "\n\n⚠️ **IMPORTANT: DO NOT RETURN MARKDOWN. START YOUR RESPONSE WITH `[{` AND NOTHING ELSE.**"
 )
+
 
 formatter_agent = ChatAgent(
     system_message=BaseMessage.make_assistant_message(

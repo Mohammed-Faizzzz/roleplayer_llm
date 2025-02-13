@@ -7,20 +7,33 @@ from sentence_transformers import SentenceTransformer, util
 # Code from this file is still buggy, hence requiring manual copy pasting of JSON output to data file
 
 def clean_json_output(json_text):
-    """Strips markdown formatting (```json ... ```) from LLM output and ensures valid JSON.
-       This is in place just in case the data formatter fails to format correctly."""
-    json_text = json_text.strip()
+    """Strips markdown formatting and ensures JSON is properly parsed with detailed debugging."""
     
-    # Remove ```json and ``` from response if present
-    json_text = re.sub(r"^```json\s*", "", json_text, flags=re.MULTILINE)
-    json_text = re.sub(r"\s*```$", "", json_text, flags=re.MULTILINE)
+    # 🚨 Check if empty response
+    if not json_text or json_text.strip() == "":
+        print("❌ Received empty response! Skipping batch...")
+        return None
 
-    # This mostly still gave me invalid JSON - I had to use the JSON output in the CLI instead and manually curate dataset
+    json_text = json_text.strip()
+
+    # 🚀 STEP 2: Remove Markdown JSON formatting (if present)
+    # json_text = re.sub(r"^```json\s*", "", json_text, flags=re.MULTILINE)
+    # json_text = re.sub(r"\s*```$", "", json_text, flags=re.MULTILINE)
+
     try:
+        # 🚀 STEP 3: First attempt at JSON parsing
         parsed_json = json.loads(json_text)
+        
+        # 🚨 Check if it’s a string (means it's **double-encoded** JSON)
+        if isinstance(parsed_json, str):
+            parsed_json = json.loads(parsed_json)
+
+        # 🚨 Ensure it's a list (our expected format)
+        if not isinstance(parsed_json, list):
+            return None
         return parsed_json
-    except json.JSONDecodeError:
-        print("Warning: LLM did not return valid JSON. Skipping this batch.")
+
+    except json.JSONDecodeError as e:
         return None
 
 def save_progress(data, filename="roleplay_dataset.json"):
