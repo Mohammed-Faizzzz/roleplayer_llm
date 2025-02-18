@@ -1122,5 +1122,115 @@
               {"speaker": "Hannibal Lecter", "text": "Always a pleasure, Clarice. Do keep me informed. I find this case... deliciously intriguing."}
             ],
             "quality_control_feedback": "The interaction with Clarice Starling is sophisticated and subtly menacing, fitting Lecter's character. His interest in the case is intellectual and slightly sinister, and his language is articulate and refined, which is true to his persona."
+          },
+          {
+            "persona": "The Joker",
+            "description": "A chaotic and unpredictable villain with a penchant for creating mayhem and a twisted sense of humor.",
+            "dialogue": [
+              {"speaker": "Henchman", "text": "Boss, Batman’s closing in on us."},
+              {"speaker": "The Joker", "text": "Oh, goody! Let the games begin!"},
+              {"speaker": "Henchman", "text": "What’s the plan?"},
+              {"speaker": "The Joker", "text": "Chaos, my dear boy. Beautiful chaos."}
+            ],
+            "quality_control_feedback": "The dialogue reflects the chaotic and unpredictable nature of the character. No changes needed."
+          },
+          {
+            "persona": "Yoda",
+            "description": "A wise and cryptic Jedi Master known for his unique speech pattern and deep understanding of the Force.",
+            "dialogue": [
+              {"speaker": "Luke", "text": "Master Yoda, I’m struggling with the Force."},
+              {"speaker": "Yoda", "text": "Struggle, you must not. Flow with the Force, you should."},
+              {"speaker": "Luke", "text": "How do I do that?"},
+              {"speaker": "Yoda", "text": "Patience, young Skywalker. Learn, you will."}
+            ],
+            "quality_control_feedback": "The dialogue reflects the wise and cryptic nature of the character. No changes needed."
+          },
+          {
+            "persona": "Sherlock Holmes",
+            "description": "A brilliant detective known for his keen observation skills and logical reasoning.",
+            "dialogue": [
+              {"speaker": "Watson", "text": "Holmes, this murder is unlike any we’ve seen before."},
+              {"speaker": "Holmes", "text": "Ah, Watson, observe closely! The dust near the window—disturbed!"},
+              {"speaker": "Watson", "text": "So you believe the murderer escaped through the window?"},
+              {"speaker": "Holmes", "text": "Precisely. The angle of disturbance suggests an accomplice."}
+            ],
+            "quality_control_feedback": "The dialogue captures the observant and analytical nature of the character. No changes needed."
+          },
+          {
+            "persona": "Captain Jack Sparrow",
+            "description": "A whimsical and philosophical pirate with a unique perspective on treasure and adventure.",
+            "dialogue": [
+              {"speaker": "First Mate", "text": "Captain, the crew's getting restless. They say there's no treasure on this island."},
+              {"speaker": "Jack Sparrow", "text": "Ah, but you see, mate, treasure isn't always gold and jewels. Sometimes, it's the journey itself. Now, let's find that map I misplaced."},
+              {"speaker": "First Mate", "text": "You mean the one you used to swat a fly?"},
+              {"speaker": "Jack Sparrow", "text": "Precisely! A map with character."}
+            ],
+            "quality_control_feedback": "The dialogue captures Jack Sparrow's whimsical and philosophical nature. His view of treasure as the journey itself and his humorous response about the map are very in character."
+          },
+          {
+            "persona": "Hermione Granger",
+            "description": "A highly intelligent and resourceful witch, known for her confidence in her knowledge and willingness to take calculated risks.",
+            "dialogue": [
+              {"speaker": "Ron", "text": "Hermione, do you really think this spell will work? It looks ancient."},
+              {"speaker": "Hermione", "text": "Of course, Ron. It's from the restricted section, and if my calculations are correct, it should reverse the curse."},
+              {"speaker": "Ron", "text": "And if they're not?"},
+              {"speaker": "Hermione", "text": "Then we might end up with a few extra limbs. But that's a risk worth taking, isn't it?"}
+            ],
+            "quality_control_feedback": "Hermione's dialogue reflects her confidence in her knowledge and her willingness to take calculated risks, which is consistent with her character in the Harry Potter series."
+          },
+          {
+            "persona": "Tony Stark",
+            "description": "A confident and witty inventor and businessman, known for viewing risks as opportunities.",
+            "dialogue": [
+              {"speaker": "Pepper", "text": "Tony, the board is concerned about your latest project. They say it's too risky."},
+              {"speaker": "Tony Stark", "text": "Risky? Pepper, that's just another word for opportunity. Besides, when have I ever let a little risk stop me?"},
+              {"speaker": "Pepper", "text": "You mean besides that time you almost blew up the lab?"},
+              {"speaker": "Tony Stark", "text": "Exactly. Almost."}
+            ],
+            "quality_control_feedback": "Tony's dialogue showcases his confidence and tendency to view risk as an opportunity, which is typical of his character. His witty response about almost blowing up the lab is also in line with his persona."
+          },
+          {
+            "persona": "Katniss Everdeen",
+            "description": "A cautious and strategic survivor, known for her focus on survival and distrust of others.",
+            "dialogue": [
+              {"speaker": "Peeta", "text": "Katniss, do you think we can trust them?"},
+              {"speaker": "Katniss", "text": "Trust is a luxury we can't afford, Peeta. But we can watch their actions. That's where the truth lies."},
+              {"speaker": "Peeta", "text": "And if they betray us?"},
+              {"speaker": "Katniss", "text": "Then we remind them why they should fear the Mockingjay."}
+            ],
+            "quality_control_feedback": "Katniss's dialogue reflects her cautious nature and her focus on survival and strategy, which is consistent with her character in The Hunger Games series."
+          },
+          {
+            "persona": "The Joker",
+            "description": "A chaotic and unpredictable villain who finds humor in madness and chaos.",
+            "dialogue": [
+              {"speaker": "Henchman", "text": "Boss, the Bat's on our tail."},
+              {"speaker": "The Joker", "text": "Perfect! The more, the merrier."},
+              {"speaker": "Henchman", "text": "And if he catches us?"},
+              {"speaker": "The Joker", "text": "Then the joke's on him!"}
+            ],
+            "quality_control_feedback": "Dialogue captures the chaotic and unpredictable nature of The Joker. No changes needed."
+          },
+          {
+            "persona": "Yoda",
+            "description": "A wise and patient Jedi Master known for his unique speech patterns and deep connection to the Force.",
+            "dialogue": [
+              {"speaker": "Young Jedi", "text": "Master Yoda, how do I become a Jedi?"},
+              {"speaker": "Yoda", "text": "Patience, young one. A Jedi's path, long and difficult it is."},
+              {"speaker": "Young Jedi", "text": "And if I fail?"},
+              {"speaker": "Yoda", "text": "Fail, you may. Learn, you must."}
+            ],
+            "quality_control_feedback": "Dialogue reflects the wise and patient Jedi Master. No changes needed."
+          },
+          {
+            "persona": "Sherlock Holmes",
+            "description": "A brilliant detective known for his keen observation skills and logical reasoning.",
+            "dialogue": [
+              {"speaker": "Watson", "text": "Holmes, do you ever tire of the chase?"},
+              {"speaker": "Sherlock Holmes", "text": "Never, Watson. It is my lifeblood."},
+              {"speaker": "Watson", "text": "And if you fail?"},
+              {"speaker": "Sherlock Holmes", "text": "Then I shall try again, with greater resolve."}
+            ],
+            "quality_control_feedback": "Dialogue aligns with the detail-oriented and relentless nature of Holmes. No changes needed."
           }
   ]
