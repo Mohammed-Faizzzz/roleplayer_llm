@@ -1,3 +1,38 @@
+# from agent_creation import workforce
+# from data_processing import save_progress, clean_json_output
+# from generate_task import generate_task
+# import multiprocessing
+# import time
+
+# def process_single_batch(batch):
+#     """Processes a single batch of dialogue generation."""
+#     print(f"Generating batch {batch + 1}...")
+#     task = generate_task(batch)
+#     try:
+#         task = workforce.process_task(task)
+#         generated_data = task.result  # Get the generated dialogue
+#         cleaned_data = clean_json_output(generated_data)  # Clean JSON output
+#         if cleaned_data:
+#             save_progress(cleaned_data)  # Save to file
+#             print(f"Batch {batch + 1} completed and saved.")
+#         else:
+#             print(f"Batch {batch + 1} failed due to invalid JSON.")
+#     except Exception as e:
+#         print(f"Error in batch {batch + 1}: {e}")
+
+# def generate_data_parallel(num_batches=1000, num_workers=8):
+#     """Generates data in parallel using multiprocessing."""
+#     print(f"Starting parallel generation with {num_workers} workers...")
+#     start_time = time.time()
+
+#     with multiprocessing.Pool(num_workers) as pool:
+#         pool.map(process_single_batch, range(num_batches))
+
+#     print(f"Data generation complete! Total time: {time.time() - start_time:.2f} seconds.")
+
+# if __name__ == "__main__":
+#     generate_data_parallel()
+
 from agent_creation import workforce
 from data_processing import save_progress, clean_json_output
 from generate_task import generate_task
@@ -59,3 +94,4 @@ def generate_data_until_budget_exhausted():
 
 if __name__ == "__main__":
     generate_data_until_budget_exhausted()
+    

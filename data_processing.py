@@ -1,3 +1,35 @@
+# import json
+# import os
+
+# def clean_json_output(json_text):
+#     """Cleans JSON output by removing Markdown formatting and ensuring valid JSON."""
+#     json_text = json_text.strip()
+#     if json_text.startswith("```json"):
+#         json_text = json_text[7:-3].strip()  # Remove Markdown JSON formatting
+#     try:
+#         return json.loads(json_text)
+#     except json.JSONDecodeError:
+#         return None
+
+# def save_progress(data, filename="roleplay_dataset.json"):
+#     """Saves the generated JSON data to a file."""
+#     if not data:
+#         return
+
+#     # Append data to existing JSON file
+#     if os.path.exists(filename) and os.path.getsize(filename) > 0:
+#         with open(filename, "r", encoding="utf-8") as f:
+#             existing_data = json.load(f)
+#     else:
+#         existing_data = []
+
+#     existing_data.extend(data)
+
+#     with open(filename, "w", encoding="utf-8") as f:
+#         json.dump(existing_data, f, indent=4)
+
+#     print(f"Progress saved! Dataset now contains {len(existing_data)} samples.")
+
 import json
 import os
 import re

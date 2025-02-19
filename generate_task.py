@@ -1,3 +1,32 @@
+# import random
+# from camel.tasks import Task
+# from persona_manager import available_personas, persona_queue, generate_user
+
+# def generate_task(batch, batch_size=1):
+#     """Generates a task for the workforce to create a dialogue."""
+#     global persona_queue
+
+#     # Select a persona for the roleplayer
+#     if len(persona_queue) < batch_size:
+#         persona_queue = available_personas.copy()  # Refresh the queue
+#         random.shuffle(persona_queue)
+#     persona = persona_queue.pop()
+
+#     # Generate a random user persona
+#     user = generate_user()
+
+#     # Create the task content
+#     task_content = (
+#         f"You are {persona['name']}. {persona['description']}\n"
+#         f"Engage in a 12-turn conversation with a user who speaks in a {user['description']}.\n"
+#         f"Stay fully in character. Do not describe your role—just respond as {persona['name']}."
+#     )
+
+#     return Task(
+#         content=task_content,
+#         id=str(batch),
+#     )
+
 import random
 from camel.tasks import Task
 from persona_manager import available_personas, persona_queue, find_closest_persona, generate_persona_description

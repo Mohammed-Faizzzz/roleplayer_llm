@@ -1,7 +1,125 @@
+# import os
+# from dotenv import load_dotenv
+# import nest_asyncio
+# from camel.agents import ChatAgent
+# from camel.messages import BaseMessage
+# from camel.models import ModelFactory
+# from camel.societies.workforce import Workforce
+# from camel.types import ModelPlatformType, ModelType
+
+# load_dotenv()
+# nest_asyncio.apply()
+
+# # Define Agents
+# # 1) Roleplayer Agent (Embodies a character)
+# roleplayer_persona = (
+#     "You are an AI that role-plays as a given character. "
+#     "Your job is to embody the persona entirely, responding naturally in every conversation.\n\n"
+#     "**Guidelines:**\n"
+#     "- Stay in character at all times.\n"
+#     "- Respond based on the personality traits, mannerisms, and speech style.\n"
+#     "- Do not acknowledge that you are an AI.\n"
+# )
+
+# roleplayer_agent = ChatAgent(
+#     system_message=BaseMessage.make_assistant_message(
+#         role_name="Roleplayer",
+#         content=roleplayer_persona,
+#     ),
+#     model=ModelFactory.create(
+#         model_platform=ModelPlatformType.OPENAI,
+#         model_type=ModelType.GPT_4,
+#     ),
+# )
+
+# # 2) User Agent (Simulates diverse user interactions)
+# user_persona = (
+#     "You are an AI simulating a wide range of user interactions. "
+#     "Each session, you take on a different personality and engage in realistic conversation.\n\n"
+#     "**Instructions:**\n"
+#     "1. Randomly select a conversational style (e.g., formal, sarcastic, emotional, logical).\n"
+#     "2. Speak naturally while keeping responses engaging.\n"
+#     "3. Never respond as the fictional character.\n"
+# )
+
+# user_agent = ChatAgent(
+#     system_message=BaseMessage.make_assistant_message(
+#         role_name="User Simulator",
+#         content=user_persona,
+#     ),
+#     model=ModelFactory.create(
+#         model_platform=ModelPlatformType.OPENAI,
+#         model_type=ModelType.GPT_4,
+#     ),
+# )
+
+# # 3) Quality Control Agent (Ensures realistic conversation flow)
+# qc_persona = (
+#     "You are a quality control expert ensuring AI-generated conversations feel natural. "
+#     "Your job is to validate:\n"
+#     "✅ User tone varies naturally.\n"
+#     "✅ Assistant does not repeat the user's input.\n"
+#     "✅ The assistant adapts to the user's tone but stays in character.\n"
+#     "✅ The conversation flows realistically."
+# )
+
+# qc_agent = ChatAgent(
+#     system_message=BaseMessage.make_assistant_message(
+#         role_name="Quality Control",
+#         content=qc_persona,
+#     ),
+#     model=ModelFactory.create(
+#         model_platform=ModelPlatformType.OPENAI,
+#         model_type=ModelType.GPT_4,
+#     ),
+# )
+
+# # 4) Formatter Agent (Formats JSON correctly for fine-tuning)
+# formatter_persona = (
+#     "Your task is to strictly format role-play dialogue into structured JSON. Follow these rules:\n"
+#     "✅ Output must be a valid JSON array.\n"
+#     "✅ Each message must be a dictionary with 'role' and 'content' keys.\n"
+#     "✅ 'role' must be one of: 'system', 'user', or 'assistant'.\n"
+#     "✅ The JSON must start with a 'system' role, followed by alternating 'user' and 'assistant' roles.\n"
+#     "✅ No Markdown, additional formatting, or missing keys.\n"
+#     "✅ The assistant should never repeat the user’s input."
+# )
+
+# formatter_agent = ChatAgent(
+#     system_message=BaseMessage.make_assistant_message(
+#         role_name="Data Formatter",
+#         content=formatter_persona + "\n\nStrictly return output in this JSON structure:\n"
+#                                      '[\n'
+#                                      '    {"role": "system", "content": "SYSTEM_MESSAGE"},\n'
+#                                      '    {"role": "user", "content": "USER_INPUT"},\n'
+#                                      '    {"role": "assistant", "content": "ASSISTANT_RESPONSE"}\n'
+#                                      ']'
+#     ),
+#     model=ModelFactory.create(
+#         model_platform=ModelPlatformType.OPENAI,
+#         model_type=ModelType.GPT_4,
+#     ),
+# )
+
+# # Create workforce for general role-play data generation
+# workforce = Workforce("Role-Play Data Generators")
+
+# workforce.add_single_agent_worker(
+#     "Roleplayer", worker=roleplayer_agent
+# ).add_single_agent_worker(
+#     "User Simulator", worker=user_agent
+# ).add_single_agent_worker(
+#     "Quality Control", worker=qc_agent
+# ).add_single_agent_worker(
+#     "Formatter", worker=formatter_agent
+# )
+
+# __all__ = ["workforce"]
+
 import os
 from dotenv import load_dotenv
 import nest_asyncio
-from camel.agents import ChatAgent
+from camel.agents import ChatAgent, CriticAgent
 from camel.messages import BaseMessage
 from camel.models import ModelFactory
 from camel.societies.workforce import Workforce
@@ -67,15 +185,16 @@ qc_example_feedback = (
     "Suggested Fix: 'Hahaha! Oh, Batsy, you STILL think you can outplay me? You see, Gotham is just my little playground!'"
 )
 
-qc_agent = ChatAgent(
+qc_agent = CriticAgent(
     system_message=BaseMessage.make_assistant_message(
         role_name="Quality Control",
         content=f"{qc_persona}\n\nExample feedback:\n{qc_example_feedback}",
     ),
     model=ModelFactory.create(
         model_platform=ModelPlatformType.OPENAI,
-        model_type=ModelType.GPT_4O,
+        model_type=ModelType.GPT_4O_MINI,
     ),
+    verbose=False
 )
 
 # Data Formatter
