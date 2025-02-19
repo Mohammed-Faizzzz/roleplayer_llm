@@ -169,3 +169,43 @@ def convert_dataset_to_chat_format(input_data):
         new_data.append(conversation)
 
     return new_data
+
+
+import json
+
+def load_dataset(input_filename):
+    """
+    Load dataset from a JSON file.
+    
+    Args:
+        input_filename (str): The path to the JSON file to load.
+        
+    Returns:
+        list: The loaded dataset.
+    """
+    with open(input_filename, 'r') as file:
+        return json.load(file)
+
+def save_dataset(output_filename, data):
+    """
+    Save the converted dataset to a JSON file.
+    
+    Args:
+        output_filename (str): The path to the output JSON file.
+        data (list): The data to save.
+    """
+    with open(output_filename, 'w') as file:
+        json.dump(data, file, indent=4)
+
+# Assuming `convert_dataset_to_chat_format` is already defined
+# Read the dataset from 'dataset.json'
+input_data = load_dataset('dataset.json')
+
+# Convert the dataset to chat format
+converted_data = convert_dataset_to_chat_format(input_data)
+
+# Save the converted dataset to 'output.json'
+save_dataset('output.json', converted_data)
+
+print("Dataset successfully converted and saved to 'output.json'.")
+
